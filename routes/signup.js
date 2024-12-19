@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename);
 const signupRouter = express.Router();
 
 signupRouter.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'views', 'signup.html'));
+    res.render(path.join(__dirname, '..', 'views', 'signup.ejs'));
 })
 signupRouter.post('/', signUP);
 

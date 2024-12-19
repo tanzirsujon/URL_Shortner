@@ -8,13 +8,13 @@ async function userUrl(req, res) {
     try {
         const user = new User({ shortId: short, redirectUrl })
         await user.save();
-        res.status(201).json({ user: "create succesfully" })
+
 
     } catch (err) {
         res.status(400).json({ user: "bad request" });
         console.log(err);
     }
-    res.send(short);
+    return res.send(short);
 
 }
 
