@@ -1,6 +1,6 @@
 import { getLoggerUser } from "../services/auth.js";
 
-async function onlyLoggedUser(req, res, next) {
+export async function onlyLoggedUser(req, res, next) {
 
     let userUid = req.cookies.uuid;
 
@@ -11,11 +11,31 @@ async function onlyLoggedUser(req, res, next) {
 
 
     if (!user) {
-        return res.redirect('/login');
+        return res.redirect('/');
     }
     req.user = user;
     next();
 
 }
 
-export default onlyLoggedUser;
+export async function notLoggedUser(req, res, next) {
+    let userUid = req.cookies.uuid;
+
+    if (!userUid) {
+        return res.redirect('/signup');
+    }
+    next();
+}
+
+export async function CheckAuth(req, res, next) {
+    let userUid = req.cookies.uuid;
+
+
+    const user = getLoggerUser(userUid);
+
+    req.user = user;
+
+
+    next();
+}
+

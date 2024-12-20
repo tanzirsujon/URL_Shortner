@@ -1,7 +1,9 @@
 import UserUrl from "../models/Urluser.js";
 import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from 'uuid';
-import { setLoggerUser } from "../services/auth.js";
+import { setLoggerUser, getLoggerUser } from "../services/auth.js";
+
+
 export async function signUP(req, res) {
 
     try {
@@ -11,7 +13,7 @@ export async function signUP(req, res) {
         const hashpassword = await bcrypt.hash(password, salting);
         let user = new UserUrl({ username, email, password: hashpassword });
         await user.save();
-        res.redirect('/login');
+        res.redirect('/');
 
 
     } catch (error) {
@@ -38,6 +40,7 @@ export async function signUP(req, res) {
 export async function logIn(req, res) {
 
     try {
+
         const { username, password } = req.body;
 
         const user = await UserUrl.findOne({ username });
@@ -52,7 +55,7 @@ export async function logIn(req, res) {
         setLoggerUser(sessionId, user);
         res.cookie('uuid', sessionId);
 
-        res.redirect('/display');
+        res.redirect('/home');
 
     } catch (error) {
 

@@ -10,7 +10,12 @@ let userSchema = mongoose.Schema({
         type: String,
         required: true,
 
-    }
+    },
+    createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users",
+    },
+
 })
 
 const User = new mongoose.model('user', userSchema);

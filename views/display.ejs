@@ -9,10 +9,37 @@
 </head>
 
 <body>
-    <h1 class="text-blue-700">Welcome   <%= user %> to your dashboard</h1>
-    
-      
-   
+    <h1 class="text-blue-700">Welcome <%= locals.user %> to your dashboard</h1>
+
+    <div style="margin-top: 30px">
+        <% if (locals.urls) { %>
+            <table>
+                <thead>
+                    <th>S. No</th>
+                    <th>ShortID</th>
+                    <th>Redirect</th>
+
+                </thead>
+                <tbody>
+                    <% urls.forEach((url, index)=> { %>
+                        <tr>
+                            <td>
+                                <%= index + 1 %>
+                            </td>
+                            <td>
+                                <%= url.shortId %>
+                            </td>
+                            <td>
+                                <%= url.redirectUrl %>
+                            </td>
+
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+            <% } %>
+    </div>
+
 </body>
 
 </html>
