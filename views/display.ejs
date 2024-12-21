@@ -7,6 +7,80 @@
     <title>Document</title>
 
 </head>
+<style>
+    /* External CSS for table styling */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Mono:wght@100..700&display=swap');
+
+    /* Table container */
+    h1{
+        font-family: "Roboto Mono", monospace;
+        font-optical-sizing: auto;
+        font-weight: 700;
+        text-align: center;
+        font-size: 1rem;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        font-family: Arial, sans-serif;
+        background-color: #ffffff;
+    }
+
+    /* Header styling */
+    thead {
+        background-color: #007BFF;
+        color: #ffffff;
+    }
+    
+    thead th {
+        padding: 10px;
+        border: 1px solid #dddddd;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    /* Body styling */
+    tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tbody tr:nth-child(odd) {
+        background-color: #ffffff;
+    }
+
+    tbody td {
+        padding: 10px;
+        border: 1px solid #dddddd;
+        word-wrap: break-word;
+        text-align: left;
+        font-family: "Roboto Mono", monospace;
+        font-optical-sizing: auto;
+        font-weight: 700;
+    }
+
+    /* Links styling */
+    tbody td a {
+        color: #007BFF;
+        text-decoration: none;
+    }
+
+    tbody td a:hover {
+        text-decoration: underline;
+    }
+
+    /* Hover effect for rows */
+    tbody tr:hover {
+        background-color: #f1f1f1;
+        cursor: pointer;
+    }
+
+    /* Optional: Table borders */
+    table {
+        border: 1px solid #dddddd;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+</style>
 
 <body>
     <h1 class="text-blue-700">Welcome <%= locals.user %> to your dashboard</h1>
@@ -17,7 +91,7 @@
                 <thead>
                     <th>S. No</th>
                     <th>ShortID</th>
-                    <th>Redirect</th>
+                    <th>Redirect Url</th>
 
                 </thead>
                 <tbody>
@@ -27,7 +101,9 @@
                                 <%= index + 1 %>
                             </td>
                             <td>
-                                <%= url.shortId %>
+                                <a href="http://localhost:3000/home/<%= url.shortId %>">
+                                    http://localhost:3000/home/<%= url.shortId %>
+                                </a>
                             </td>
                             <td>
                                 <%= url.redirectUrl %>
